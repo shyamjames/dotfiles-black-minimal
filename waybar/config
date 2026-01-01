@@ -1,0 +1,62 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "spacing": 4,
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["hyprland/window"],
+    "modules-right": ["mpris", "pulseaudio", "network", "battery", "clock"],
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{name}"
+    },
+
+    "hyprland/window": {
+        "max-length": 50,
+        "separate-outputs": true
+    },
+
+    "mpris": {
+        "format": "{title}",
+        "max-length": 20,
+        "ellipsis": "..."
+    },
+
+    "pulseaudio": {
+        "format": "{icon}",
+        "format-muted": "󰝟",
+        "format-icons": {
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "scroll-step": 5,
+        "on-click": "pavucontrol",
+        "ignored-sinks": ["Easy Effects Sink"] 
+    }, 
+
+    "network": {
+        "format-wifi": "",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰤮",
+        "tooltip-format": "{essid} ({signalStrength}%)"
+    },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}%",          
+        "format-charging": "",           // Icon when actively charging
+        "format-plugged": "",            // Icon when plugged in (maintenance mode)
+        "format-full": "",               // Icon when at 100%
+        "format-discharging": "{capacity}%", // Percentage when on battery
+        "tooltip-format": "{time} ({capacity}%)"
+    },
+
+    "clock": {
+        "format": "{:%I:%M %p  %d-%m-%Y}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>"
+    }
+}

@@ -1,0 +1,60 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "CaskaydiaCove Nerd Font Mono", monospace;
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: #1a1a1a; /* Off-Black */
+    color: #e6e6e6;            /* Off-White */
+}
+
+/* Modules */
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+    color: #888888;
+}
+
+#workspaces button.active {
+    color: #e6e6e6;
+}
+
+#window {
+    font-weight: bold;
+}
+
+/* Right Modules */
+#mpris,
+#pulseaudio{
+    padding: 0 10px;
+    background-color: transparent;
+    color: #e6e6e6;
+}
+#network {
+    font-size: 18px;
+    padding: 0 10px;
+    background-color: transparent;
+    color: #e6e6e6;
+}
+#battery,
+#clock {
+    padding: 0 10px;
+    background-color: transparent;
+    color: #e6e6e6;
+}
+
+/* Specific styling for states */
+#battery.charging {
+    color: #e6e6e6;
+}
+
+#battery.warning {
+    color: #ebdbb2; /* Muted Yellow for warning */
+}
+
+#battery.critical {
+    color: #cc241d; /* Muted Red for critical */
+}
