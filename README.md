@@ -21,7 +21,7 @@ This setup is built around a "Minimal Off-Black" theme (#1a1a1a background and #
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/dotfiles-black-minimal.git ~/dotfiles-black-minimal
+git clone https://github.com/shyamjames/dotfiles-black-minimal.git ~/dotfiles-black-minimal
 ```
 
 ### 2. Symlink the configuration
