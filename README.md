@@ -58,6 +58,8 @@ The following packages are required for this setup:
 - `ttf-cascadia-code-nerd`
 - `brightnessctl`
 - `playerctl`
+- `hyprshot`
+- `cliphist`
 
 > [!NOTE]
 > This setup uses **CaskaydiaCove Nerd Font Mono** for icons and text. Ensure it is installed for the UI to render correctly.
@@ -69,6 +71,8 @@ The following packages are required for this setup:
 | `Super + Q` | Kill Active Window |
 | `Super + E` | Open Thunar |
 | `Super + A` | Open Rofi App Launcher |
+| `Super + V` | Clipboard History (Rofi) |
 | `Super + B` | Open Brave Browser |
 | `Super + Backspace` | Power Menu (Rofi) |
 | `Super + Shift + W` | Reload Waybar |
+| `Print` | Screenshot Menu (Fullscreen/Window/Area) |
