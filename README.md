@@ -4,6 +4,8 @@ A minimal, high-contrast, off-black Hyprland configuration designed for focus an
 
 ## 🌑 Overview
 
+![Desktop Preview](assets/fullscreen.png)
+
 This setup is built around a "Minimal Off-Black" theme (#1a1a1a background and #e6e6e6 foreground). It uses **Hyprland** as the compositor, **Waybar** for the status bar, and **Kitty** as the terminal emulator.
 
 ### Core Components
