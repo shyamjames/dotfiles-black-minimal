@@ -11,6 +11,8 @@ This setup is built around a "Minimal Off-Black" theme (#1a1a1a background and #
 - **Compositor:** [Hyprland](https://hyprland.org/)
 - **Terminal:** [Kitty](https://sw.kovidgoyal.net/kitty/)
 - **Status Bar:** [Waybar](https://github.com/Alexays/Waybar)
+- **Terminal:** [Kitty](https://sw.kovidgoyal.net/kitty/)
+- **Text Editor:** [Neovim](https://neovim.io/)
 - **Application Launcher:** [Rofi](https://github.com/davatorium/rofi) (Wayland fork)
 - **Logout Menu:** [wlogout](https://github.com/ArtsyWork/wlogout)
 - **Notification Daemon:** [Dunst](https://dunst-project.org/)
@@ -41,6 +43,7 @@ ln -s ~/dotfiles-black-minimal/waybar ~/.config/waybar
 ln -s ~/dotfiles-black-minimal/rofi ~/.config/rofi
 ln -s ~/dotfiles-black-minimal/wlogout ~/.config/wlogout
 ln -s ~/dotfiles-black-minimal/dunst ~/.config/dunst
+ln -s ~/dotfiles-black-minimal/nvim ~/.config/nvim
 ```
 
 ### 3. Dependencies
@@ -61,6 +64,9 @@ The following packages are required for this setup:
 - `playerctl`
 - `hyprshot`
 - `cliphist`
+- `neovim`
+- `nodejs`
+- `npm`
 
 > [!NOTE]
 > This setup uses **CaskaydiaCove Nerd Font Mono** for icons and text. Ensure it is installed for the UI to render correctly.
