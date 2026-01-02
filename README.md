@@ -2,7 +2,6 @@
 
 A minimal, high-contrast, off-black Hyprland configuration designed for focus and aesthetic consistency.
 
-## 🌑 Overview
 
 ![Desktop Preview](assets/fullscreen.png)
 
