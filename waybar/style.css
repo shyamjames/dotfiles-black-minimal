@@ -27,8 +27,14 @@ window#waybar {
 }
 
 /* Right Modules */
-#mpris,
-#pulseaudio{
+#mpris {
+    padding: 0 10px;
+    background-color: transparent;
+    color: #e6e6e6;
+}
+
+#pulseaudio {
+    font-size: 18px;
     padding: 0 10px;
     background-color: transparent;
     color: #e6e6e6;

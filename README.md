@@ -13,7 +13,9 @@ This setup is built around a "Minimal Off-Black" theme (#1a1a1a background and #
 - **Status Bar:** [Waybar](https://github.com/Alexays/Waybar)
 - **Terminal:** [Kitty](https://sw.kovidgoyal.net/kitty/)
 - **Text Editor:** [Neovim](https://neovim.io/)
+- **Login Manager:** [SDDM](https://github.com/sddm/sddm) (with custom monochrome theme)
 - **Application Launcher:** [Rofi](https://github.com/davatorium/rofi) (Wayland fork)
+- **Shell:** [Zsh](https://www.zsh.org/) (custom minimal config)
 - **Logout Menu:** [wlogout](https://github.com/ArtsyWork/wlogout)
 - **Notification Daemon:** [Dunst](https://dunst-project.org/)
 - **Wallpaper Utility:** [Swaybg](https://github.com/swaywm/swaybg)
@@ -44,6 +46,16 @@ ln -s ~/dotfiles-black-minimal/rofi ~/.config/rofi
 ln -s ~/dotfiles-black-minimal/wlogout ~/.config/wlogout
 ln -s ~/dotfiles-black-minimal/dunst ~/.config/dunst
 ln -s ~/dotfiles-black-minimal/nvim ~/.config/nvim
+ln -s ~/dotfiles-black-minimal/zsh/zshrc ~/.zshrc
+sudo cp -r ~/dotfiles-black-minimal/sddm/monochrome /usr/share/sddm/themes/
+```
+
+### 3. Configure SDDM (Login Screen)
+Create the directory if it doesn't exist and define the current theme:
+```bash
+sudo mkdir -p /etc/sddm.conf.d
+echo "[Theme]
+Current=monochrome" | sudo tee /etc/sddm.conf.d/theme.conf
 ```
 
 ### 3. Dependencies
@@ -52,6 +64,7 @@ The following packages are required for this setup:
 - `hyprland`
 - `kitty`
 - `waybar`
+- `zsh`
 - `rofi-lbonn-wayland-git`
 - `wlogout`
 - `dunst`
@@ -67,6 +80,8 @@ The following packages are required for this setup:
 - `neovim`
 - `nodejs`
 - `npm`
+- `sddm`
+- `imagemagick`
 
 > [!NOTE]
 > This setup uses **CaskaydiaCove Nerd Font Mono** for icons and text. Ensure it is installed for the UI to render correctly.
@@ -83,3 +98,4 @@ The following packages are required for this setup:
 | `Super + Backspace` | Power Menu (Rofi) |
 | `Super + Shift + W` | Reload Waybar |
 | `Print` | Screenshot Menu (Fullscreen/Window/Area) |
+| `<leader>ee` (Nvim) | Toggle File Explorer |
