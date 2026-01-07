@@ -82,6 +82,9 @@ The following packages are required for this setup:
 - `npm`
 - `sddm`
 - `imagemagick`
+- `blueman`
+- `bluez`
+- `bluez-utils`
 
 > [!NOTE]
 > This setup uses **CaskaydiaCove Nerd Font Mono** for icons and text. Ensure it is installed for the UI to render correctly.
