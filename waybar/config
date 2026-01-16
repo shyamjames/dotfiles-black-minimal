@@ -24,7 +24,8 @@
     "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
-        "format": "{name}"
+        "format": "{name}",
+        "persistent-workspaces": {}
     },
     "hyprland/window": {
         "max-length": 50,
