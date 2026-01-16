@@ -101,4 +101,3 @@ The following packages are required for this setup:
 | `Super + Backspace` | Power Menu (Rofi) |
 | `Super + Shift + W` | Reload Waybar |
 | `Print` | Screenshot Menu (Fullscreen/Window/Area) |
-| `<leader>ee` (Nvim) | Toggle File Explorer |
