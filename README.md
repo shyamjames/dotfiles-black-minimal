@@ -85,7 +85,13 @@ The following packages are required for this setup:
 - `blueman`
 - `bluez`
 - `bluez-utils`
+- `pipewire`
+- `wireplumber`
+- `pipewire-pulse`
 - `pavucontrol`
+
+> [!NOTE]
+> This setup uses **PipeWire** with **WirePlumber** for audio. Ensure `pipewire`, `wireplumber`, and `pipewire-pulse` are installed and running for volume controls to work in Waybar.
 
 > [!NOTE]
 > This setup uses **CaskaydiaCove Nerd Font Mono** for icons and text. Ensure it is installed for the UI to render correctly.
