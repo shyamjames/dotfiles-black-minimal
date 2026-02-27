@@ -85,6 +85,7 @@ The following packages are required for this setup:
 - `blueman`
 - `bluez`
 - `bluez-utils`
+- `pavucontrol`
 
 > [!NOTE]
 > This setup uses **CaskaydiaCove Nerd Font Mono** for icons and text. Ensure it is installed for the UI to render correctly.
