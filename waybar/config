@@ -11,7 +11,7 @@
     ],
     "modules-right": [
         "mpris",
-        "pulseaudio",
+        "wireplumber",
         "network",
         "battery",
         "tray",
@@ -36,21 +36,16 @@
         "max-length": 20,
         "ellipsis": "..."
     },
-    "pulseaudio": {
+    "wireplumber": {
         "format": "{icon}",
         "format-muted": "󰝟",
-        "format-icons": {
-            "default": [
-                "󰕿",
-                "󰖀",
-                "󰕾"
-            ]
-        },
+        "format-icons": [
+            "󰕿",
+            "󰖀",
+            "󰕾"
+        ],
         "scroll-step": 5,
-        "on-click": "pavucontrol",
-        "ignored-sinks": [
-            "Easy Effects Sink"
-        ]
+        "on-click": "pavucontrol"
     },
     "network": {
         "format-wifi": "",

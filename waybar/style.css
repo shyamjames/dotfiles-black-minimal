@@ -35,8 +35,8 @@ window#waybar {
     color: #e6e6e6;
 }
 
-#pulseaudio {
-    font-size: 18px;
+#wireplumber {
+    font-size: 14px;
     padding: 0 10px;
     background-color: transparent;
     color: #e6e6e6;
