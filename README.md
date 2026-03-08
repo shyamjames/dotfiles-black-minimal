@@ -28,26 +28,32 @@ This setup is built around a "Minimal Off-Black" theme (#1a1a1a background and #
 git clone https://github.com/shyamjames/dotfiles-black-minimal.git ~/dotfiles-black-minimal
 ```
 
-### 2. Symlink the configuration
-To use these configurations, you should symlink them to your `~/.config` directory. This allows you to keep the repository managed by git while the system uses the latest changes.
+### 2. Install GNU Stow and symlink configurations
+This repo uses [GNU Stow](https://www.gnu.org/software/stow/) to manage symlinks. Each top-level directory is a stow package that mirrors the target directory structure relative to `~`.
 
 > [!IMPORTANT]
 > Make sure to backup your existing configurations before running these commands.
 
 ```bash
-# Create the config directory if it doesn't exist
-mkdir -p ~/.config
+# Install stow (Arch)
+sudo pacman -S stow
 
-# Symlink individual components
-ln -s ~/dotfiles-black-minimal/hypr ~/.config/hypr
-ln -s ~/dotfiles-black-minimal/kitty ~/.config/kitty
-ln -s ~/dotfiles-black-minimal/waybar ~/.config/waybar
-ln -s ~/dotfiles-black-minimal/rofi ~/.config/rofi
-ln -s ~/dotfiles-black-minimal/wlogout ~/.config/wlogout
-ln -s ~/dotfiles-black-minimal/dunst ~/.config/dunst
-ln -s ~/dotfiles-black-minimal/nvim ~/.config/nvim
-ln -s ~/dotfiles-black-minimal/zsh/zshrc ~/.zshrc
+# Stow all packages (creates symlinks in ~)
+cd ~/dotfiles-black-minimal
+stow hypr kitty waybar rofi wlogout dunst zsh
+
+# SDDM theme must be copied manually (requires root)
 sudo cp -r ~/dotfiles-black-minimal/sddm/monochrome /usr/share/sddm/themes/
+```
+
+To remove symlinks for a specific package:
+```bash
+stow -D hypr
+```
+
+To restow (remove + re-link) a package:
+```bash
+stow -R hypr
 ```
 
 ### 3. Configure SDDM (Login Screen)
