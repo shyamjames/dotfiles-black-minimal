@@ -1,0 +1,3 @@
+# Ignore credential files — never commit these
+**/.env
+*.env

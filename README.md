@@ -95,6 +95,10 @@ The following packages are required for this setup:
 - `wireplumber`
 - `pipewire-pulse`
 - `pavucontrol`
+- `networkmanager` (nmcli)
+- `wireless_tools` (iwgetid)
+- `libnotify` (notify-send)
+- `curl`
 
 > [!NOTE]
 > This setup uses **PipeWire** with **WirePlumber** for audio. Ensure `pipewire`, `wireplumber`, and `pipewire-pulse` are installed and running for volume controls to work in Waybar.
@@ -114,3 +118,6 @@ The following packages are required for this setup:
 | `Super + Backspace` | Power Menu (Rofi) |
 | `Super + Shift + W` | Reload Waybar |
 | `Print` | Screenshot Menu (Fullscreen/Window/Area) |
+
+> [!NOTE]
+> If you use this on a network with a captive portal (login page), run `bash ~/.config/hypr/scripts/setup.sh` once after setup. Fill in your credentials in `~/.config/hypr/scripts/.env` (see `.env.example`). You may also need to edit `login.sh` and `watch-network.sh` to match your portal's URL and your network's SSID.
