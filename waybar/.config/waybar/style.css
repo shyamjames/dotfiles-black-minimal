@@ -52,7 +52,8 @@ window#waybar {
 
 #battery,
 #clock,
-#tray {
+#tray,
+#custom-tray-icon {
     padding: 0 10px;
     background-color: transparent;
     color: #e6e6e6;

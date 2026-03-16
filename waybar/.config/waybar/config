@@ -14,9 +14,21 @@
         "wireplumber",
         "network",
         "battery",
-        "tray",
+        "group/tray-group",
         "clock"
     ],
+    "group/tray-group": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 300,
+            "transition-left-to-right": false
+        },
+        "modules": ["custom/tray-icon", "tray"]
+    },
+    "custom/tray-icon": {
+        "format": "󰀻",
+        "tooltip": false
+    },
     "tray": {
         "icon-size": 16,
         "spacing": 10
