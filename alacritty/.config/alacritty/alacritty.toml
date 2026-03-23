@@ -1,0 +1,42 @@
+[font]
+size = 12.0
+
+[font.normal]
+family = "CaskaydiaCove Nerd Font Mono"
+style = "Regular"
+
+[window]
+padding = { x = 10, y = 10 }
+decorations = "Full"
+
+[colors.primary]
+background = "#1a1a1a"
+foreground = "#e6e6e6"
+
+[colors.selection]
+text = "#1a1a1a"
+background = "#e6e6e6"
+
+[colors.cursor]
+text = "#1a1a1a"
+cursor = "#e6e6e6"
+
+[colors.normal]
+black   = "#1a1a1a"
+red     = "#ff6b6b"
+green   = "#98c379"
+yellow  = "#e5c07b"
+blue    = "#61afef"
+magenta = "#c678dd"
+cyan    = "#56b6c2"
+white   = "#e6e6e6"
+
+[colors.bright]
+black   = "#888888"
+red     = "#ff6b6b"
+green   = "#98c379"
+yellow  = "#e5c07b"
+blue    = "#61afef"
+magenta = "#c678dd"
+cyan    = "#56b6c2"
+white   = "#ffffff"
