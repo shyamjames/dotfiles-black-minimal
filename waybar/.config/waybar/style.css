@@ -13,14 +13,64 @@ window#waybar {
     /* Off-White */
 }
 
-/* Modules */
-#workspaces button {
-    padding: 0 5px;
-    background-color: transparent;
-    color: #888888;
+/* Workspace indicators */
+window#waybar #workspaces,
+window#waybar #hyprland-workspaces {
+    padding: 0;
 }
 
-#workspaces button.active {
+window#waybar #workspaces button,
+window#waybar #hyprland-workspaces button {
+    min-width: 0;
+    padding: 0 5px;
+    margin: 0 2px;
+    border-radius: 3px;
+    background: transparent;
+    color: #8a8a8a;
+    box-shadow: none;
+    text-shadow: none;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+window#waybar #workspaces button label,
+window#waybar #hyprland-workspaces button label {
+    color: #8a8a8a;
+}
+
+window#waybar #workspaces button:hover,
+window#waybar #hyprland-workspaces button:hover {
+    color: #cfcfcf;
+    background: transparent;
+}
+
+window#waybar #workspaces button:hover label,
+window#waybar #hyprland-workspaces button:hover label {
+    color: #cfcfcf;
+}
+
+window#waybar #workspaces button.active,
+window#waybar #workspaces button.focused,
+window#waybar #hyprland-workspaces button.active,
+window#waybar #hyprland-workspaces button.focused {
+    color: #e6e6e6;
+    background: #303030;
+}
+
+window#waybar #workspaces button.active label,
+window#waybar #workspaces button.focused label,
+window#waybar #hyprland-workspaces button.active label,
+window#waybar #hyprland-workspaces button.focused label {
+    color: #e6e6e6;
+}
+
+window#waybar #workspaces button.visible,
+window#waybar #hyprland-workspaces button.visible {
+    color: #e6e6e6;
+}
+
+window#waybar #workspaces button.visible label,
+window#waybar #hyprland-workspaces button.visible label {
     color: #e6e6e6;
 }
 
