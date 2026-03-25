@@ -8,7 +8,7 @@ return {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     config = function()
-      local c = require("plugins.colorscheme").colors
+      local c = require("config.colorscheme").colors
       require("lualine").setup({
         options = {
           theme = {

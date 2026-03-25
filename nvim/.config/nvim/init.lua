@@ -1,13 +1,11 @@
 -- ============================================================
 --  Neovim init.lua — dotfiles-black-minimal
---  Color palette: #1a1a1a bg · #e6e6e6 fg
---  Plugin manager: lazy.nvim (auto-bootstrapped)
 -- ============================================================
 
--- Load core options first (no plugin dependencies)
-require("plugins.options")
+-- ── Core options (before lazy, avoids modifiable-off errors) ─
+require("config.options")
 
--- ── Bootstrap lazy.nvim ─────────────────────────────────────
+-- ── Bootstrap lazy.nvim ──────────────────────────────────────
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -19,10 +17,10 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- ── Load plugins ────────────────────────────────────────────
+-- ── Load plugins (only lua/plugins/ contains plugin specs) ───
 require("lazy").setup("plugins", {
-  defaults = { lazy = false },
-  install  = { colorscheme = { "blackminimal" } },
+  defaults = { lazy = true },
+  install  = { colorscheme = { "blackminimal", "habamax" } },
   checker  = { enabled = false },
   change_detection = { notify = false },
 })
