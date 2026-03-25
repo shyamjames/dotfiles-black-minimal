@@ -9,6 +9,8 @@ o.expandtab   = true   -- spaces instead of tabs
 o.shiftwidth  = 4      -- indent step
 o.tabstop     = 4      -- visual width of <Tab>
 o.softtabstop = 4      -- editing feels like real tabs
+o.smartindent = true   -- auto-indent after {, before }
+o.cindent     = true   -- C-style indent (works for Java too)
 
 -- ── System clipboard ─────────────────────────────────────────
 o.clipboard = "unnamedplus"   -- sync with system clipboard (xclip / wl-clipboard)

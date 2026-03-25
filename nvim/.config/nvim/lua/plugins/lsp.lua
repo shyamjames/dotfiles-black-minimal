@@ -94,15 +94,20 @@ return {
           end,
 
           -- ── Java: jdtls ─────────────────────────────────
+          -- Mason installs a jdtls wrapper; don't override cmd.
+          -- Ensure Java (jdk-openjdk) is installed on the system.
           ["jdtls"] = function()
             require("lspconfig").jdtls.setup({
               on_attach    = on_attach,
               capabilities = capabilities,
-              cmd = {
-                "jdtls",
-                "-configuration", vim.fn.stdpath("cache") .. "/jdtls/config",
-                "-data",          vim.fn.stdpath("cache") .. "/jdtls/workspace/" ..
-                                    vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t"),
+              settings = {
+                java = {
+                  configuration = {
+                    runtimes = {
+                      { name = "JavaSE-17", default = true },
+                    },
+                  },
+                },
               },
             })
           end,
