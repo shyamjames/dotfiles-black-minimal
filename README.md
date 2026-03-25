@@ -40,7 +40,7 @@ sudo pacman -S stow
 
 # Stow all packages (creates symlinks in ~)
 cd ~/dotfiles-black-minimal
-stow hypr kitty waybar rofi wlogout dunst zsh
+stow hypr kitty waybar rofi wlogout dunst zsh nvim
 
 # SDDM theme must be copied manually (requires root)
 sudo cp -r ~/dotfiles-black-minimal/sddm/monochrome /usr/share/sddm/themes/
@@ -86,6 +86,9 @@ The following packages are required for this setup:
 - `neovim`
 - `nodejs`
 - `npm`
+- `python-lsp-server` (or `pyright` via mason)
+- `jdk-openjdk` (required for `jdtls` Java LSP)
+- `wl-clipboard` (for Neovim system clipboard sync on Wayland)
 - `sddm`
 - `imagemagick`
 - `blueman`
@@ -105,6 +108,35 @@ The following packages are required for this setup:
 
 > [!NOTE]
 > This setup uses **CaskaydiaCove Nerd Font Mono** for icons and text. Ensure it is installed for the UI to render correctly.
+
+## 📝 Neovim
+
+The Neovim configuration lives in `nvim/.config/nvim/` and uses [lazy.nvim](https://github.com/folke/lazy.nvim) as the plugin manager. Plugins are bootstrapped automatically on first launch.
+
+### Features
+- **Colorscheme:** Custom `blackminimal` theme matching the repo's `#1a1a1a` / `#e6e6e6` palette
+- **Syntax Highlighting:** [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) (Python, Java + many more)
+- **LSP:** [Mason](https://github.com/williamboman/mason.nvim) auto-installs `pyright` (Python) and `jdtls` (Java)
+- **Autocomplete:** [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) with LSP, buffer, and path sources
+- **Auto-closing:** [nvim-autopairs](https://github.com/windwp/nvim-autopairs) — Treesitter-aware bracket/quote closing
+- **Indentation:** 4-space soft tabs (`expandtab`)
+- **Clipboard:** System clipboard sync via `unnamedplus` (requires `wl-clipboard` on Wayland)
+- **UI:** [lualine](https://github.com/nvim-lualine/lualine.nvim) statusline, gitsigns, indent guides
+
+### Neovim LSP Keybindings
+| Key | Action |
+| --- | --- |
+| `gd` | Go to definition |
+| `gD` | Go to declaration |
+| `gr` | List references |
+| `gi` | Go to implementation |
+| `K` | Hover documentation |
+| `<leader>rn` | Rename symbol |
+| `<leader>ca` | Code action |
+| `<leader>f` | Format buffer |
+| `[d` / `]d` | Prev / next diagnostic |
+| `<Tab>` | Next completion / snippet jump |
+| `<CR>` | Confirm completion |
 
 ## ⌨️ Keybindings
 | Key | Action |
