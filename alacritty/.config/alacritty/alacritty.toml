@@ -7,7 +7,7 @@ style = "Regular"
 
 [window]
 padding = { x = 10, y = 10 }
-decorations = "None"
+decorations = "Full"
 
 [colors.primary]
 background = "#1a1a1a"
