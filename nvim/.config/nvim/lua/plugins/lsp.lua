@@ -67,6 +67,13 @@ return {
       })
 
       -- ── Explicit Server Setup ─────────────────────────────────
+      -- Suppress nvim-lspconfig deprecation warning on Nvim 0.11
+      local old_deprecate = vim.deprecate
+      vim.deprecate = function(name, alt, version, plugin, backtrace)
+        if plugin == "nvim-lspconfig" then return end
+        if old_deprecate then old_deprecate(name, alt, version, plugin, backtrace) end
+      end
+
       -- Python
       require("lspconfig").pyright.setup({
         on_attach    = on_attach,
@@ -109,6 +116,10 @@ return {
           },
         },
       })
+
+      -- Restore deprecate
+      vim.deprecate = old_deprecate
+
     end,
   },
 
