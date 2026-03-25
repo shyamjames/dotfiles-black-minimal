@@ -29,34 +29,29 @@ return {
       "neovim/nvim-lspconfig",
     },
     config = function()
-      require("mason-lspconfig").setup({
-        ensure_installed    = { "pyright", "jdtls" },
-        automatic_installation = true,
-      })
-
-      -- Shared on_attach keymaps
+      -- ── Shared on_attach keymaps ────────────────────────────
       local on_attach = function(_, bufnr)
         local map = function(keys, fn, desc)
           vim.keymap.set("n", keys, fn, { buffer = bufnr, silent = true, desc = desc })
         end
-        map("gd",         vim.lsp.buf.definition,     "Go to definition")
-        map("gD",         vim.lsp.buf.declaration,    "Go to declaration")
-        map("gr",         vim.lsp.buf.references,     "List references")
-        map("gi",         vim.lsp.buf.implementation, "Go to implementation")
-        map("K",          vim.lsp.buf.hover,          "Hover docs")
-        map("<leader>rn", vim.lsp.buf.rename,         "Rename symbol")
-        map("<leader>ca", vim.lsp.buf.code_action,    "Code action")
-        map("<leader>f",  function() vim.lsp.buf.format({ async = true }) end, "Format")
-        map("[d",         vim.diagnostic.goto_prev,   "Prev diagnostic")
-        map("]d",         vim.diagnostic.goto_next,   "Next diagnostic")
+        map("gd",          vim.lsp.buf.definition,     "Go to definition")
+        map("gD",          vim.lsp.buf.declaration,    "Go to declaration")
+        map("gr",          vim.lsp.buf.references,     "List references")
+        map("gi",          vim.lsp.buf.implementation, "Go to implementation")
+        map("K",           vim.lsp.buf.hover,          "Hover docs")
+        map("<leader>rn",  vim.lsp.buf.rename,         "Rename symbol")
+        map("<leader>ca",  vim.lsp.buf.code_action,    "Code action")
+        map("<leader>f",   function() vim.lsp.buf.format({ async = true }) end, "Format")
+        map("[d",          vim.diagnostic.goto_prev,   "Prev diagnostic")
+        map("]d",          vim.diagnostic.goto_next,   "Next diagnostic")
       end
 
+      -- ── Capabilities (extend with cmp if loaded) ─────────────
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      -- Extend with nvim-cmp capabilities if available
       local ok, cmp_lsp = pcall(require, "cmp_nvim_lsp")
       if ok then capabilities = cmp_lsp.default_capabilities(capabilities) end
 
-      -- Diagnostic display
+      -- ── Diagnostic display ────────────────────────────────────
       vim.diagnostic.config({
         virtual_text     = { prefix = "●" },
         signs            = true,
@@ -66,48 +61,52 @@ return {
         float            = { border = "rounded", source = "always" },
       })
 
-      -- Per-server handlers (only runs if Mason installed the server)
-      require("mason-lspconfig").setup_handlers({
-        -- Default handler for any installed server
-        function(server_name)
-          require("lspconfig")[server_name].setup({
-            on_attach    = on_attach,
-            capabilities = capabilities,
-          })
-        end,
+      -- ── Mason-lspconfig: install + per-server handlers ────────
+      require("mason-lspconfig").setup({
+        ensure_installed       = { "pyright", "jdtls" },
+        automatic_installation = true,
 
-        -- ── Python: pyright ───────────────────────────────
-        ["pyright"] = function()
-          require("lspconfig").pyright.setup({
-            on_attach    = on_attach,
-            capabilities = capabilities,
-            settings = {
-              python = {
-                analysis = {
-                  typeCheckingMode       = "basic",
-                  autoSearchPaths        = true,
-                  useLibraryCodeForTypes = true,
+        -- handlers fire only for servers Mason has installed
+        handlers = {
+          -- Default: works for any server not listed below
+          function(server_name)
+            require("lspconfig")[server_name].setup({
+              on_attach    = on_attach,
+              capabilities = capabilities,
+            })
+          end,
+
+          -- ── Python: pyright ─────────────────────────────
+          ["pyright"] = function()
+            require("lspconfig").pyright.setup({
+              on_attach    = on_attach,
+              capabilities = capabilities,
+              settings = {
+                python = {
+                  analysis = {
+                    typeCheckingMode       = "basic",
+                    autoSearchPaths        = true,
+                    useLibraryCodeForTypes = true,
+                  },
                 },
               },
-            },
-          })
-        end,
+            })
+          end,
 
-        -- ── Java: jdtls ───────────────────────────────────
-        -- jdtls needs per-project workspace dirs; use nvim-jdtls for full
-        -- support. This minimal config is enough to start the server.
-        ["jdtls"] = function()
-          require("lspconfig").jdtls.setup({
-            on_attach    = on_attach,
-            capabilities = capabilities,
-            cmd = {
-              "jdtls",
-              "-configuration", vim.fn.stdpath("cache") .. "/jdtls/config",
-              "-data",          vim.fn.stdpath("cache") .. "/jdtls/workspace/" ..
-                                  vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t"),
-            },
-          })
-        end,
+          -- ── Java: jdtls ─────────────────────────────────
+          ["jdtls"] = function()
+            require("lspconfig").jdtls.setup({
+              on_attach    = on_attach,
+              capabilities = capabilities,
+              cmd = {
+                "jdtls",
+                "-configuration", vim.fn.stdpath("cache") .. "/jdtls/config",
+                "-data",          vim.fn.stdpath("cache") .. "/jdtls/workspace/" ..
+                                    vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t"),
+              },
+            })
+          end,
+        },
       })
     end,
   },
