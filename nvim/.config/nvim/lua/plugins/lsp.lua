@@ -1,6 +1,5 @@
 -- ============================================================
 --  LSP + Mason — language server support for Python & Java
---  Uses vim.lsp.config (nvim 0.11+ API) via mason-lspconfig handlers
 -- ============================================================
 return {
   -- Mason: auto-install LSP servers
@@ -61,69 +60,53 @@ return {
         float            = { border = "rounded", source = "always" },
       })
 
-      -- ── Mason-lspconfig: install + per-server handlers ────────
+      -- ── Mason-lspconfig install list ──────────────────────────
       require("mason-lspconfig").setup({
         ensure_installed       = { "pyright", "jdtls" },
         automatic_installation = true,
+      })
 
-        -- handlers fire only for servers Mason has installed
-        handlers = {
-          -- Default: works for any server not listed below
-          function(server_name)
-            require("lspconfig")[server_name].setup({
-              on_attach    = on_attach,
-              capabilities = capabilities,
-            })
-          end,
+      -- ── Explicit Server Setup ─────────────────────────────────
+      -- Python
+      require("lspconfig").pyright.setup({
+        on_attach    = on_attach,
+        capabilities = capabilities,
+        settings = {
+          python = {
+            analysis = {
+              typeCheckingMode       = "basic",
+              autoSearchPaths        = true,
+              useLibraryCodeForTypes = true,
+            },
+          },
+        },
+      })
 
-          -- ── Python: pyright ─────────────────────────────
-          ["pyright"] = function()
-            require("lspconfig").pyright.setup({
-              on_attach    = on_attach,
-              capabilities = capabilities,
-              settings = {
-                python = {
-                  analysis = {
-                    typeCheckingMode       = "basic",
-                    autoSearchPaths        = true,
-                    useLibraryCodeForTypes = true,
-                  },
-                },
+      -- Java
+      local util = require("lspconfig.util")
+      local root_markers = { ".git", "pom.xml", "build.gradle", "gradlew", "mvnw" }
+      local root_dir = util.root_pattern(unpack(root_markers))(vim.fn.expand("%:p:h")) or vim.fn.getcwd()
+      local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
+      local workspace_dir = vim.fn.stdpath("cache") .. "/jdtls/workspace/" .. project_name
+
+      require("lspconfig").jdtls.setup({
+        on_attach    = on_attach,
+        capabilities = capabilities,
+        cmd = {
+          "jdtls",
+          "-data", workspace_dir,
+          "--jvm-arg=-XX:+IgnoreUnrecognizedVMOptions",
+          "--jvm-arg=-javaagent:" .. vim.fn.expand("$HOME") .. "/.local/share/nvim/mason/packages/jdtls/lombok.jar",
+        },
+        root_dir = root_dir,
+        settings = {
+          java = {
+            configuration = {
+              runtimes = {
+                { name = "JavaSE-17", default = true }, -- Adjust if needed
               },
-            })
-          end,
-
-          -- ── Java: jdtls ─────────────────────────────────
-          -- Uses root_pattern to detect the project root and sets a
-          -- unique workspace data directory in ~/.cache/jdtls.
-          ["jdtls"] = function()
-            local util = require("lspconfig.util")
-            local root_markers = { ".git", "pom.xml", "build.gradle", "gradlew", "mvnw" }
-            local root_dir = util.root_pattern(unpack(root_markers))(vim.fn.expand("%:p:h")) or vim.fn.getcwd()
-            local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
-            local workspace_dir = vim.fn.stdpath("cache") .. "/jdtls/workspace/" .. project_name
-
-            require("lspconfig").jdtls.setup({
-              on_attach    = on_attach,
-              capabilities = capabilities,
-              cmd = {
-                "jdtls",
-                "-data", workspace_dir,
-                "--jvm-arg=-XX:+IgnoreUnrecognizedVMOptions",
-                "--jvm-arg=-javaagent:" .. vim.fn.expand("$HOME") .. "/.local/share/nvim/mason/packages/jdtls/lombok.jar",
-              },
-              root_dir = root_dir,
-              settings = {
-                java = {
-                  configuration = {
-                    runtimes = {
-                      { name = "JavaSE-17", default = true }, -- Adjust if needed
-                    },
-                  },
-                },
-              },
-            })
-          end,
+            },
+          },
         },
       })
     end,

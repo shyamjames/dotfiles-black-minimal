@@ -1,17 +1,13 @@
 -- ============================================================
 --  Treesitter — syntax highlighting + indentation
---  Using `opts` so lazy.nvim calls setup() after install
 -- ============================================================
 return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
-    -- pcall guard: skip setup gracefully if not yet installed (first launch)
     config = function()
-      local ok, ts = pcall(require, "nvim-treesitter.configs")
-      if not ok then return end
-      ts.setup({
+      require("nvim-treesitter.configs").setup({
         ensure_installed = {
           "python", "java",
           "lua", "vim", "vimdoc",
