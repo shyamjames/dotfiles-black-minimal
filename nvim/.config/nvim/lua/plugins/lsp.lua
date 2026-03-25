@@ -94,17 +94,30 @@ return {
           end,
 
           -- ── Java: jdtls ─────────────────────────────────
-          -- Mason installs a jdtls wrapper; don't override cmd.
-          -- Ensure Java (jdk-openjdk) is installed on the system.
+          -- Uses root_pattern to detect the project root and sets a
+          -- unique workspace data directory in ~/.cache/jdtls.
           ["jdtls"] = function()
+            local util = require("lspconfig.util")
+            local root_markers = { ".git", "pom.xml", "build.gradle", "gradlew", "mvnw" }
+            local root_dir = util.root_pattern(unpack(root_markers))(vim.fn.expand("%:p:h")) or vim.fn.getcwd()
+            local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
+            local workspace_dir = vim.fn.stdpath("cache") .. "/jdtls/workspace/" .. project_name
+
             require("lspconfig").jdtls.setup({
               on_attach    = on_attach,
               capabilities = capabilities,
+              cmd = {
+                "jdtls",
+                "-data", workspace_dir,
+                "--jvm-arg=-XX:+IgnoreUnrecognizedVMOptions",
+                "--jvm-arg=-javaagent:" .. vim.fn.expand("$HOME") .. "/.local/share/nvim/mason/packages/jdtls/lombok.jar",
+              },
+              root_dir = root_dir,
               settings = {
                 java = {
                   configuration = {
                     runtimes = {
-                      { name = "JavaSE-17", default = true },
+                      { name = "JavaSE-17", default = true }, -- Adjust if needed
                     },
                   },
                 },
