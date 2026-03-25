@@ -13,7 +13,7 @@ This setup is built around a "Minimal Off-Black" theme (#1a1a1a background and #
 - **Status Bar:** [Waybar](https://github.com/Alexays/Waybar)
 - **Terminal:** [Kitty](https://sw.kovidgoyal.net/kitty/)
 - **Login Manager:** [SDDM](https://github.com/sddm/sddm) (with custom monochrome theme)
-- **Application Launcher:** [Rofi](https://github.com/davatorium/rofi) (Wayland fork)
+- **Application Launcher:** [Rofi](https://github.com/davatorium/rofi)
 - **Shell:** [Zsh](https://www.zsh.org/) (custom minimal config)
 - **Logout Menu:** [wlogout](https://github.com/ArtsyWork/wlogout)
 - **Notification Daemon:** [Dunst](https://dunst-project.org/)
@@ -27,7 +27,14 @@ This setup is built around a "Minimal Off-Black" theme (#1a1a1a background and #
 git clone https://github.com/shyamjames/dotfiles-black-minimal.git ~/dotfiles-black-minimal
 ```
 
-### 2. Install GNU Stow and symlink configurations
+### 2. One-click dependency install (yay + optional stow)
+This command downloads and runs the installer script directly.
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/shyamjames/dotfiles-black-minimal/main/install.sh | bash
+```
+
+### 3. Install GNU Stow and symlink configurations
 This repo uses [GNU Stow](https://www.gnu.org/software/stow/) to manage symlinks. Each top-level directory is a stow package that mirrors the target directory structure relative to `~`.
 
 > [!IMPORTANT]
@@ -55,7 +62,7 @@ To restow (remove + re-link) a package:
 stow -R hypr
 ```
 
-### 3. Configure SDDM (Login Screen)
+### 4. Configure SDDM (Login Screen)
 Create the directory if it doesn't exist and define the current theme:
 ```bash
 sudo mkdir -p /etc/sddm.conf.d
@@ -63,14 +70,14 @@ echo "[Theme]
 Current=monochrome" | sudo tee /etc/sddm.conf.d/theme.conf
 ```
 
-### 3. Dependencies
+### 5. Dependencies
 The following packages are required for this setup:
 
 - `hyprland`
 - `kitty`
 - `waybar`
 - `zsh`
-- `rofi-lbonn-wayland-git`
+- `rofi`
 - `wlogout`
 - `dunst`
 - `swaybg`
