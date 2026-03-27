@@ -9,7 +9,7 @@ This setup is built around a "Minimal Off-Black" theme (#1a1a1a background and #
 
 ### Core Components
 - **Compositor:** [Hyprland](https://hyprland.org/)
-- **Terminal:** [Kitty](https://sw.kovidgoyal.net/kitty/)
+- **Terminal:** [Kitty](https://sw.kovidgoyal.net/kitty/) / [Ghostty](https://ghostty.org/)
 - **Status Bar:** [Waybar](https://github.com/Alexays/Waybar)
 - **Terminal:** [Kitty](https://sw.kovidgoyal.net/kitty/)
 - **Login Manager:** [SDDM](https://github.com/sddm/sddm) (with custom monochrome theme)
@@ -46,7 +46,7 @@ sudo pacman -S stow
 
 # Stow all packages (creates symlinks in ~)
 cd ~/dotfiles-black-minimal
-stow hypr kitty waybar rofi wlogout dunst zsh
+stow hypr ghostty kitty waybar rofi wlogout dunst zsh
 
 # SDDM theme must be copied manually (requires root)
 sudo cp -r ~/dotfiles-black-minimal/sddm/monochrome /usr/share/sddm/themes/
@@ -74,6 +74,7 @@ Current=monochrome" | sudo tee /etc/sddm.conf.d/theme.conf
 The following packages are required for this setup:
 
 - `hyprland`
+- `ghostty`
 - `kitty`
 - `waybar`
 - `zsh`

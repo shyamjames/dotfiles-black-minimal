@@ -7,6 +7,7 @@ YAY_DIR="/tmp/yay-$$"
 
 DEPENDENCIES=(
   hyprland
+  ghostty
   kitty
   waybar
   zsh
@@ -40,6 +41,7 @@ DEPENDENCIES=(
 
 STOW_PACKAGES=(
   hypr
+  ghostty
   kitty
   waybar
   rofi
