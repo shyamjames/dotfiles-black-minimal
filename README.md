@@ -62,7 +62,18 @@ To restow (remove + re-link) a package:
 stow -R hypr
 ```
 
-### 4. Configure SDDM (Login Screen)
+### 4. Configure Zsh (Oh My Zsh & Plugins)
+This setup relies on **Oh My Zsh** and the `zsh-autosuggestions` plugin for the shell configuration. Install them before using the shell:
+
+```bash
+# Install Oh My Zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# Install zsh-autosuggestions plugin
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+```
+
+### 5. Configure SDDM (Login Screen)
 Create the directory if it doesn't exist and define the current theme:
 ```bash
 sudo mkdir -p /etc/sddm.conf.d
@@ -70,7 +81,7 @@ echo "[Theme]
 Current=monochrome" | sudo tee /etc/sddm.conf.d/theme.conf
 ```
 
-### 5. Dependencies
+### 6. Dependencies
 The following packages are required for this setup:
 
 - `hyprland`
