@@ -28,16 +28,25 @@ show_prompt() {
 }
 
 # Monitor NetworkManager connection events
+LAST_SSID=""
+
 nmcli monitor | while read -r line; do
     # Trigger on "connected" state changes
     if echo "$line" | grep -qi "connected"; then
-        sleep 1  # brief wait for IP to settle
+        sleep 2  # wait for IP and interface to settle
         CURRENT_SSID=$(iwgetid -r 2>/dev/null)
-        for ssid in "${TARGET_SSIDS[@]}"; do
-            if [ "$CURRENT_SSID" = "$ssid" ]; then
-                show_prompt "$CURRENT_SSID"
-                break
-            fi
-        done
+        
+        if [ -n "$CURRENT_SSID" ] && [ "$CURRENT_SSID" != "$LAST_SSID" ]; then
+            LAST_SSID="$CURRENT_SSID"
+            for ssid in "${TARGET_SSIDS[@]}"; do
+                if [ "$CURRENT_SSID" = "$ssid" ]; then
+                    show_prompt "$CURRENT_SSID" &
+                    break
+                fi
+            done
+        fi
+    # Also handle disconnect to clear state so reconnecting triggers prompt again
+    elif echo "$line" | grep -qi "disconnect"; then
+        LAST_SSID=""
     fi
 done
