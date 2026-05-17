@@ -12,7 +12,8 @@ pkill mpvpaper
 
 # Start mpvpaper in the background with IPC enabled
 # Using 'ALL' to cover all monitors
-mpvpaper -o "input-ipc-server=$SOCKET --loop --no-audio" ALL "$WALLPAPER" &
+# --auto-pause (-p) pauses the video when the wallpaper is hidden (e.g. by a fullscreen window)
+mpvpaper -p -o "input-ipc-server=$SOCKET --loop --no-audio" ALL "$WALLPAPER" &
 
 # Wait for socket to be created
 sleep 2
