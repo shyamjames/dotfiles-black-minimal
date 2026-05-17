@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Path to the video wallpaper
-WALLPAPER="$HOME/dotfiles-black-minimal/wallpapers/bmw-m4.mp4"
+WALLPAPER="$HOME/dotfiles-black-minimal/wallpapers/girl-behind-curtains.mp4"
 # MPV socket for IPC
 SOCKET="/tmp/mpv-wallpaper-socket"
 # Battery path (adjust BAT1 if necessary)
