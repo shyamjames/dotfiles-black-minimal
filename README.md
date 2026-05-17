@@ -17,7 +17,7 @@ This setup is built around a "Minimal Off-Black" theme (#1a1a1a background and #
 - **Shell:** [Zsh](https://www.zsh.org/) (custom minimal config)
 - **Logout Menu:** [wlogout](https://github.com/ArtsyWork/wlogout)
 - **Notification Daemon:** [Dunst](https://dunst-project.org/)
-- **Wallpaper Utility:** [Swaybg](https://github.com/swaywm/swaybg)
+- **Wallpaper Utility:** [mpvpaper](https://github.com/GhostNaN/mpvpaper) (with battery-saving script)
 - **Idle/Lock:** [Hypridle](https://github.com/hyprwm/hypridle) & [Hyprlock](https://github.com/hyprwm/hyprlock)
 
 ## 🚀 Installation & Setup
@@ -92,7 +92,8 @@ The following packages are required for this setup:
 - `rofi`
 - `wlogout`
 - `dunst`
-- `swaybg`
+- `mpvpaper`
+- `socat`
 - `hypridle`
 - `hyprlock`
 - `thunar`
