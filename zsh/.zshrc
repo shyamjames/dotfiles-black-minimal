@@ -121,11 +121,9 @@ alias c='clear'
 alias warp-restart='sudo systemctl restart warp-svc.service'
 export PATH="$HOME/.npm-global/bin:$PATH"
 
-# OpenClaw Completion
-source "/home/shyam/.openclaw/completions/openclaw.zsh"
 
 # opencode
-export PATH=/home/shyam/.opencode/bin:$PATH
+# export PATH=/home/shyam/.opencode/bin:$PATH
 
 # Created by `pipx` on 2026-04-12 19:46:37
 export PATH="$PATH:/home/shyam/.local/bin"
